@@ -17,14 +17,17 @@ def prepareData(data):
 
     print(data.describe())
 
-    data.drop_duplicates(inplace=True)
+    data.drop_duplicates(inplace = True)
 
     data.dropna(inplace=True)
+
+    data.drop(columns=[], inplace = True)
 
     print(data)
 
 CSVName = 'animal-data-1.csv'
 print(CSVName)
 data = loadData(CSVName)
+print(data)
 data = prepareData(data)
 print(data)
