@@ -7,15 +7,15 @@ def loadData(CSVName):
     try:
         data = pd.read_csv(CSVName, sep = ',', encoding = 'utf8')
     except:
-        print('Error')
+        print('Error: Data not loaded')
     
     return data
 
 def prepareData(data):
 
-    # print(data.info())
+    print(data.info())
 
-    # print(data.describe())
+    print(data.describe())
 
     data.drop_duplicates(inplace=True)
 
