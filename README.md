@@ -1,11 +1,11 @@
 # projeto-python-dados-senac
 Projeto de dados utilizando python e as bibliotecas pandas, matplotlib e skitlearn
 
-
 Objetivos do tratamento desses dados:
 
-Identificar se a raça do animal(gato ou cachorro) tem relação com o abandono e morte dentro dentro do abrigo de animais. Baseado também na idade e genêro.
+Identificar se a raça do animal(gato ou cachorro) tem relação com o abandono e morte dentro do abrigo de animais. Baseado também na idade e genêro.
 - Remover as colunas sheltercode, identichipnumber, deceaseddate, returndate, istrial, returnedreason, location, movementtype, isdoa
+- Fazer a avaliação de coluna por coluna para saber se os dados estao corretos.
 
 Projeto Análise de Dados - Python
 

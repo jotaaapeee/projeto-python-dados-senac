@@ -30,35 +30,71 @@ def prepareData(data):
     if 'animalage' in data.columns:
         data['animalage'] = data['animalage'].apply(parse_animal_age)
 
-    print(data.info())
+    # print(data.info())
 
-    print(data.describe())
+    # print(data.describe())
 
-    data.drop_duplicates(inplace = True)
+    # data.dropna(inplace=True)
 
-    data.dropna(inplace=True)
+    # data.drop_duplicates(inplace = True)
 
-    data.drop(columns=[], inplace = True)
+    data = data.drop_duplicates()
 
-    print(data)
+    data.drop(columns=['sheltercode', 
+                       'identichipnumber', 
+                       'deceaseddate', 
+                       'returndate', 
+                       'istrial', 
+                       'intakedate', 
+                       'returnedreason', 
+                       'location', 
+                       'movementtype', 
+                       'isdoa'], inplace = True)
+
+    le = LabelEncoder()
+    data['intakereason'] = le.fit_transform(data['intakereason'])
+    data['breedname'] = le.fit_transform(data['breedname'])
+    data['basecolour'] = le.fit_transform(data['basecolour'])
+    data['speciesname'] = le.fit_transform(data['speciesname'])
+    data['sexname'] = le.fit_transform(data['sexname'])
+    data['deceasedreason'] = le.fit_transform(data['deceasedreason'])
+
+    data.dropna(inplace = True)
+    # print(data.info())
+    # print(data.describe())
+    # print(data)
 
     return data
 
-def graphData(data):
-    plt.figure(figsize=(10, 6))
-    plt.hist(data['animalage'], bins=20, color='skyblue', edgecolor='black')
-    plt.title('Distribuição de Idade dos Animais')
-    plt.xlabel('Idade')
-    plt.ylabel('Frequência')
+def exibirGraficoBarras(dados):
+    print(f"Number of records: {len(dados)}")
+    print(dados)
+    dados_grouped = dados.groupby('basecolour').groups
+    print(dados_grouped)
+    lb = []
+    vl = []
+    for grp in dados_grouped:
+        lb.append(str(grp))
+        vl.append(len(dados_grouped[grp]))
+
+    bar_colors = ['tab:red', 'tab:blue']
+    plt.bar(lb, vl, color=bar_colors)
     plt.show()
 
 CSVName = 'animal-data-1.csv'
 print(CSVName)
 data = loadData(CSVName)
-print(data)
-data = prepareData(data)
-print('=========================')
-print(data['animalage'])
-print('=========================')
-print(data)
-# graphData(data)
+
+data_cats = data[data['speciesname'] == 'Cat'].copy()
+print(f"Total records: {len(data)}")
+print(f"Cat records: {len(data_cats)}")
+
+data_cats = prepareData(data_cats)
+exibirGraficoBarras(data_cats)
+
+data_dogs = data[data['speciesname'] == 'Dog'].copy()
+print(f"Total records: {len(data)}")
+print(f"Dog records: {len(data_dogs)}")
+
+data_dogs = prepareData(data_dogs)
+exibirGraficoBarras(data_dogs)
