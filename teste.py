@@ -1,3 +1,3 @@
-print('oilar')
+# print('oilar')
 
-print('q sono')
+# print('q sono')
