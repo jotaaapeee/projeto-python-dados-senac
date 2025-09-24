@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 
+le = LabelEncoder()
+
 def loadData(CSVName):
     data = None
     try:
@@ -30,9 +32,9 @@ def prepareData(data):
     if 'animalage' in data.columns:
         data['animalage'] = data['animalage'].apply(parse_animal_age)
 
-    # print(data.info())
+    #print(data.info())
 
-    # print(data.describe())
+    #print(data.describe())
 
     # data.dropna(inplace=True)
 
@@ -51,26 +53,25 @@ def prepareData(data):
                        'movementtype', 
                        'isdoa'], inplace = True)
 
-    le = LabelEncoder()
-    # data['intakereason'] = le.fit_transform(data['intakereason'])
-    # data['breedname'] = le.fit_transform(data['breedname'])
-    # data['basecolour'] = le.fit_transform(data['basecolour'])
-    # data['speciesname'] = le.fit_transform(data['speciesname'])
-    # data['sexname'] = le.fit_transform(data['sexname'])
-    # data['deceasedreason'] = le.fit_transform(data['deceasedreason'])
+    
+    data['intakereason'] = le.fit_transform(data['intakereason'])
+    data['breedname'] = le.fit_transform(data['breedname'])
+    data['basecolour'] = le.fit_transform(data['basecolour'])
+    data['speciesname'] = le.fit_transform(data['speciesname'])
+    data['sexname'] = le.fit_transform(data['sexname'])
 
     data.dropna(inplace = True)
     # print(data.info())
     # print(data.describe())
-    # print(data)
-
+    #print(data)
+    
     return data
 
 def exibirGraficoBarras(dados):
     print(f"Number of records: {len(dados)}")
-    print(dados)
+    #print(dados)
     dados_grouped = dados.groupby('basecolour').groups
-    print(dados_grouped)
+    #print(dados_grouped)
     lb = []
     vl = []
     for grp in dados_grouped:
@@ -82,19 +83,64 @@ def exibirGraficoBarras(dados):
     plt.show()
 
 CSVName = 'animal-data-1.csv'
-print(CSVName)
+#print(CSVName)
 data = loadData(CSVName)
+datatudao = prepareData(data)
+data_cats = data[data['speciesname'] == 'Cat'].copy()
+#print(f"Total records: {len(data)}")
+#print(f"Cat records: {len(data_cats)}")
 
-# data_cats = data[data['speciesname'] == 'Cat'].copy()
-# print(f"Total records: {len(data)}")
-# print(f"Cat records: {len(data_cats)}")
+data_cats = prepareData(data_cats)
+#exibirGraficoBarras(data_cats)
 
-# data_cats = prepareData(data_cats)
-# exibirGraficoBarras(data_cats)
+data_dogs = data[data['speciesname'] == 'Dog'].copy()
+#print(f"Total records: {len(data)}")
+#print(f"Dog records: {len(data_dogs)}")
 
-# data_dogs = data[data['speciesname'] == 'Dog'].copy()
-# print(f"Total records: {len(data)}")
-# print(f"Dog records: {len(data_dogs)}")
+data_dogs = prepareData(data_dogs)
+#exibirGraficoBarras(data_dogs)
 
-# data_dogs = prepareData(data_dogs)
-# exibirGraficoBarras(data_dogs)
+
+def gerarBoxplot(data):
+    fig, ax = plt.subplots()
+    ax.set_ylabel('boxplot variáveis de raça')
+
+    for n, col in enumerate(data.columns):
+        if col == 'breedname':
+            ax.boxplot(data[col], positions=[n+1])
+
+    plt.title("Boxplot da coluna ...")
+    plt.ylabel("Valores")
+    plt.show()
+#     print("-----------------------------------------------------------------------")
+#     print(data["basecolour"])
+#     print("-----------------------------------------------------------------------")
+
+# print(gerarBoxplot(data_cats))
+
+def exibirGraficoBarras(data):
+    data = data.groupby('basecolour').groups
+    print(data)
+    lb = []
+    vl = []
+    for grp in data:
+        original = le.inverse_transform(data[grp])
+        lb.append(str(original))
+        vl.append(len(data[grp]))
+
+    bar_colors = ['tab:red', 'tab:blue']
+    plt.bar(lb, vl, color=bar_colors)
+    plt.show()
+
+#print(exibirGraficoBarras(data_cats))
+
+def vergatos(data_cats):
+    print(data_cats["basecolour"])
+    original = le.inverse_transform(data_cats["basecolour"])
+    print(original)
+
+# print("-----------------------------------------------------------------------")
+# print(data_cats["basecolour"])
+# print("-----------------------------------------------------------------------")
+
+print(vergatos(datatudao))
