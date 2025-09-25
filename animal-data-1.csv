@@ -1,4 +1,4 @@
-id,intakedate,intakereason,istransfer,sheltercode,identichipnumber,animalname,breedname,basecolour,speciesname,animalage,sexname,location,movementdate,movementtype,istrial,returndate,returnedreason,deceaseddate,deceasedreason,diedoffshelter,puttosleep,isdoa
+id,intakedate,intakereason,istransfer,sheltercode,identichipnumber,animalname,breedname,basecolour,speciesname,animalage,sexname,location,movemcleafrentdate,movementtype,istrial,returndate,returnedreason,deceaseddate,deceasedreason,diedoffshelter,puttosleep,isdoa
 15801,2009-11-28 00:00:00,Moving,0,C09115463,0A115D7358,Jadzia,Domestic Short Hair,Tortie,Cat,9 years 2 months.,Female,Adoptable Cat Glass Colony,2017-05-13 00:00:00,Adoption,0,,Stray,,Died in care,0,0,0
 15932,2009-12-08 00:00:00,Moving,0,D09125594,0A11675477,Gonzo,German Shepherd Dog/Mix,Tan,Dog,9 years 1 month.,Male,Adoptable Dogs,2017-04-24 00:00:00,Adoption,0,,Stray,,Died in care,0,0,0
 28859,2012-08-10 00:00:00,Abandoned,0,D12082309,0A13253C7B,Maggie,Shep Mix/Siberian Husky,Various,Dog,6 years 8 months.,Female,Adoptable Dogs,2017-04-15 00:00:00,Adoption,0,,Stray,,Died in care,0,0,0
