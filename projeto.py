@@ -129,6 +129,8 @@ def prepareData(data):
                        'movementtype', 
                        'isdoa'], inplace = True)
     
+    data = data.drop(data[data["sexname"] == "Unknown"].index)
+    
     data['intakereason'] = le.fit_transform(data['intakereason'])
     data['breedname'] = le.fit_transform(data['breedname'])
     data['basecolour'] = le.fit_transform(data['basecolour'])
@@ -157,6 +159,8 @@ def prepareDataWithoutLabelEncoder(data):
                        'location', 
                        'movementtype', 
                        'isdoa'], inplace = True)
+    
+    data = data.drop(data[data["sexname"] == "Unknown"].index)
 
     data.dropna(inplace = True)
 
@@ -247,18 +251,18 @@ def exibirGraficoBarrasAge(type, df):
 def separarDados(data, type):
 
     if type == 'dog':
-        Y = data['animalage', 'sexname', 'basecolour_normalized']
+        Y = data['breedname']
         X = data.drop(['breedname'],axis=1)
     else:
-        Y = data['animalage', 'sexname', 'basecolour_normalized']
+        Y = data['basecolour']
         X = data.drop(['basecolour'],axis=1)
 
+    # Removi o stratify pois tinham algumas classes muito pequenas, oq impedia a divisao entre treino e teste.
     x_train, x_test, y_train, y_test = train_test_split(X, Y, 
                                                         test_size=0.3,
                                                         train_size=0.7, 
                                                         shuffle=True, 
-                                                        random_state=42, 
-                                                        stratify=Y)
+                                                        random_state=42)
 
     return x_train, x_test, y_train, y_test
 
@@ -271,29 +275,35 @@ if data_without_label_encoder is not None:
 
     data_cats = data[data['speciesname'] == 'Cat'].copy()
     data_cats_without_label_encoder = data_without_label_encoder[data_without_label_encoder['speciesname'] == 'Cat'].copy()
-    # print(f"Total records: {len(data)}")
-    # print(f"Cat records: {len(data_cats)}")
 
     data_cats = prepareData(data_cats)
     #exibirGraficoBarras(data_cats)
 
     data_dogs = data[data['speciesname'] == 'Dog'].copy()
     data_dogs_without_label_encoder = data_without_label_encoder[data_without_label_encoder['speciesname'] == 'Dog'].copy()
-    # print(f"Total records: {len(data)}")
-    # print(f"Dog records: {len(data_dogs)}")
 
     data_dogs = prepareData(data_dogs)
+    #exibirGraficoBarras(data_dogs)
 
-    print(exibirGraficoBarrasBasecolour('cat', data_cats_without_label_encoder))
-    print(exibirGraficoBarrasAge('cat', data_cats_without_label_encoder))
-    print(exibirGraficoBarrasSex('cat', data_cats_without_label_encoder))
+    # print(exibirGraficoBarrasBasecolour('cat', data_cats_without_label_encoder))
+    # print(exibirGraficoBarrasAge('cat', data_cats_without_label_encoder))
+    # print(exibirGraficoBarrasSex('cat', data_cats_without_label_encoder))
 
-    print(exibirGraficoBarrasBasecolour('dog', data_dogs_without_label_encoder))
-    print(exibirGraficoBarrasAge('dog', data_dogs_without_label_encoder))
-    print(exibirGraficoBarrasSex('dog', data_dogs_without_label_encoder))
+    # print(exibirGraficoBarrasBasecolour('dog', data_dogs_without_label_encoder))
+    # print(exibirGraficoBarrasAge('dog', data_dogs_without_label_encoder))
+    # print(exibirGraficoBarrasSex('dog', data_dogs_without_label_encoder))
+
+    # print(data_cats['basecolour'].unique())
+    # print(data_cats.info())
+    # print(data_cats)
+    # print(data_dogs['breedname'].unique())
+    # print(data_dogs.info())
+    # print(data_dogs)
 
     x_train, x_test, y_train, y_test = separarDados(data_cats, 'cat')
+    print(x_train, x_test, y_train, y_test)
     x_train, x_test, y_train, y_test = separarDados(data_dogs, 'dog')
+    print(x_train, x_test, y_train, y_test)
 
     # gerarBoxplot(data_cats_without_label_encoder)
     # gerarBoxplot(data_dogs_without_label_encoder)
