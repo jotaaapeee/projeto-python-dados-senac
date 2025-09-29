@@ -33,7 +33,7 @@ def parseAnimalAge(age_value):
     else:
         value = years
 
-    if value < 0 or value > 25:
+    if value < 0 or value > 20:
         return pd.NA
 
     return value
