@@ -1,3 +1,7 @@
+# Trabalho Python
+# Letícia Ferreira Silva
+# João Pedro Guervich Varrichio
+
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -33,7 +37,7 @@ def parseAnimalAge(age_value):
     else:
         value = years
 
-    if value < 0 or value > 20:
+    if value < 0 or value > 2:
         return pd.NA
 
     return value

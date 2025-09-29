@@ -1,4 +1,9 @@
 # projeto-python-dados-senac
+
+- Paticipantes:
+-- Letícia Ferreira Silva
+-- João Pedro Guervich Varrichio
+
 Projeto de dados utilizando python e as bibliotecas pandas, matplotlib e skitlearn
 
 Objetivos do tratamento desses dados:
