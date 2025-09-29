@@ -12,8 +12,8 @@ Projeto Análise de Dados - Python
 Trabalho pode ser desenvolvido em Grupo de até 4 alunos
 0º Contextualizar o DataSet (Apresentar uma explicação do objetivo do dataset: detalhar as colunas) 💎
 1º Carregar dataset (Realizar carga de um arquivo csv. Pode-se utilizar a biblioteca pandas) 💎
-2º Realizar tratamento de colunas e linhas (Verificar se existem colunas inválidas e linhas invlidas) "Minimo de 3 gráficos pelo menos" meio a meio
-3º Realizar análise gráfica dos dados (Pode-se utilizar as bibliotecas matplotlib ou seaborn) X
-4º Separar os arquivos de treino e teste (Separar os arquivos em treino 70 % e teste 30 %) X
+2º Realizar tratamento de colunas e linhas (Verificar se existem colunas inválidas e linhas invlidas) "Minimo de 3 gráficos pelo menos" 💎
+3º Realizar análise gráfica dos dados (Pode-se utilizar as bibliotecas matplotlib ou seaborn) 💎
+4º Separar os arquivos de treino e teste (Separar os arquivos em treino 70 % e teste 30 %) 💎
 
 Obs: Deve ser utilizando linguagem python para todas as atividades
