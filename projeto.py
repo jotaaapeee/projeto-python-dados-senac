@@ -285,13 +285,13 @@ if data_without_label_encoder is not None:
     data_dogs = prepareData(data_dogs)
     #exibirGraficoBarras(data_dogs)
 
-    # print(exibirGraficoBarrasBasecolour('cat', data_cats_without_label_encoder))
-    # print(exibirGraficoBarrasAge('cat', data_cats_without_label_encoder))
-    # print(exibirGraficoBarrasSex('cat', data_cats_without_label_encoder))
+    print(exibirGraficoBarrasBasecolour('cat', data_cats_without_label_encoder))
+    print(exibirGraficoBarrasAge('cat', data_cats_without_label_encoder))
+    print(exibirGraficoBarrasSex('cat', data_cats_without_label_encoder))
 
-    # print(exibirGraficoBarrasBasecolour('dog', data_dogs_without_label_encoder))
-    # print(exibirGraficoBarrasAge('dog', data_dogs_without_label_encoder))
-    # print(exibirGraficoBarrasSex('dog', data_dogs_without_label_encoder))
+    print(exibirGraficoBarrasBasecolour('dog', data_dogs_without_label_encoder))
+    print(exibirGraficoBarrasAge('dog', data_dogs_without_label_encoder))
+    print(exibirGraficoBarrasSex('dog', data_dogs_without_label_encoder))
 
     # print(data_cats['basecolour'].unique())
     # print(data_cats.info())
@@ -301,9 +301,9 @@ if data_without_label_encoder is not None:
     # print(data_dogs)
 
     x_train, x_test, y_train, y_test = separarDados(data_cats, 'cat')
-    print(x_train, x_test, y_train, y_test)
+    # print(x_train, x_test, y_train, y_test)
     x_train, x_test, y_train, y_test = separarDados(data_dogs, 'dog')
-    print(x_train, x_test, y_train, y_test)
+    # print(x_train, x_test, y_train, y_test)
 
     # gerarBoxplot(data_cats_without_label_encoder)
     # gerarBoxplot(data_dogs_without_label_encoder)
